@@ -40,3 +40,12 @@ Chrome LightHouse를 이용해서 검사
   - code splitting을 적용하기 위해서는 webpack에서 따로 설정이 필요( webpack code splitting[https://webpack.js.org/guides/code-splitting/])
   - Route-based code splitting 적용
     
+### 텍스트 압축
+- 종류
+  - GZip
+  - Deflate
+- 운영모드에서 확인
+- serve.js를 통해서 텍스트 압축 적용 여부 선택
+
+
+
