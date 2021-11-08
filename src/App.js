@@ -1,23 +1,35 @@
-import React,{ Suspense, lazy } from 'react'
-import { Switch, Route } from 'react-router-dom'
-import './App.css'
-// import ListPage from './pages/ListPage/index'
-// import ViewPage from './pages/ViewPage/index'
-
-const ListPage = lazy(()=> import('./pages/ListPage/index'));
-const ViewPage = lazy(()=> import('./pages/ViewPage/index'));
+import React, { useState } from 'react'
+import styled from 'styled-components'
+import Header from './components/Header'
+import InfoTable from './components/InfoTable'
+import SurveyChart from './components/SurveyChart'
+import Footer from './components/Footer'
+import ImageModal from './components/ImageModal'
 
 function App() {
-  return (
-    <div className="App">
-      <Suspense fallback={<div>로딩 중...</div>}>
-        <Switch>
-          <Route path="/" component={ListPage} exact />
-          <Route path="/view/:id" component={ViewPage} exact />
-        </Switch>
-      </Suspense>
-    </div>
-  )
+    const [showModal, setShowModal] = useState(false)
+
+    return (
+        <div className="App">
+            <Header />
+            <InfoTable />
+            <ButtonModal onClick={() => { setShowModal(true) }}>올림픽 사진 보기</ButtonModal>
+            <SurveyChart />
+            <Footer />
+            {showModal ? <ImageModal closeModal={() => { setShowModal(false) }} /> : null}
+        </div>
+    )
 }
+
+const ButtonModal = styled.button`
+    border-radius: 30px;
+    border: 1px solid #999;
+    padding: 12px 30px;
+    background: none;
+    font-size: 1.1em;
+    color: #555;
+    outline: none;
+    cursor: pointer;
+`
 
 export default App
